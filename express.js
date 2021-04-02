@@ -3,7 +3,9 @@ const conn = require("db");
 const app = express();
 const cors = require("cors");
 
-app.get("/", function (req, res) {
+app.use('/', express.static('src'));
+
+app.get("/dingo", function (req, res) {
     var responseText = "Hello World!<br>";
     responseText += "<small>Requested at: " + req.requestTime + "</small>";
     res.send(responseText);
