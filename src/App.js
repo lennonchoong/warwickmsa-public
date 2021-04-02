@@ -9,8 +9,8 @@ class App extends Component {
 				<header className="App-header">
 					<form>
 						<label for="string">String:</label>
-						<input id="string" type="text"></input>
-						<input type="submit">Submit</input>
+						<input id="string" type="text"/>
+						<input type="submit" value="Submit"/>
 					</form>
 				</header>
 			</div>
