@@ -3,20 +3,27 @@ import './App.css';
 
 // mysql --host=eu-cdbr-west-01.cleardb.com --user=bad0019e44ad2f --password=4bf132aa --reconnect heroku_9676ea096575ad5
 class App extends Component {
+	constructor() {
+		super()
+		this.state = {
+			data: ""
+		}
+	}
+
 	handleChange = (e) => {
 		const data = e.target.value;
-		this.setState({'data': data});
+		this.setState({'data': data}, () => console.log(this.state));
 	}
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		alert(this.state.data);
-		fetch("", {
+		console.log(JSON.stringify(this.state));
+		fetch("/api/text", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(this.state.data),
+            body: JSON.stringify(this.state),
         })
 			.then((response) => response.json())
 			.then(() => {

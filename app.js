@@ -7,12 +7,10 @@ app.use('/', express.static(path.join(__dirname, 'client/build')));
 app.use(express.json());
 
 app.post('/api/text', (req, res) => {
-    const {id} = req.params;
-    const {text} = req.body;
-
-    res.status(200).send({
-        headers: id,
-        text: text
+    let qstr = `INSERT INTO test VALUES (${sql.escape(req.body.data)});`
+    sql.query(qstr, (err, result) => {
+        if (err) throw err;
+        console.log(result);
     })
 })
 
