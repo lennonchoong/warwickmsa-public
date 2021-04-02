@@ -3,15 +3,6 @@ import './App.css';
 
 // mysql --host=eu-cdbr-west-01.cleardb.com --user=bad0019e44ad2f --password=4bf132aa --reconnect heroku_9676ea096575ad5
 class App extends Component {
-	constructor() {
-
-	}
-
-
-	handleFormSubmit() {
-
-	}
-
 	render() {
 		return (
 			<div className="App">
