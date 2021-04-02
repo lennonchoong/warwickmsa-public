@@ -2,9 +2,11 @@ const express = require("express");
 // const conn = require("db");
 const path = require("path")
 const app = express();
-const cors = require("cors");
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'client/build')));
+// app.get('*', (req,res) =>{
+//     res.sendFile(path.join(__dirname+'/client/build'));
+// });
 
 // app.get("/", function (req, res) {
 //     var responseText = "Hello World!<br>";
