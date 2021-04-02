@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// mysql --host=eu-cdbr-west-01.cleardb.com --user=bad0019e44ad2f --password=4bf132aa --reconnect heroku_9676ea096575ad5
+class App extends Component {
+	constructor() {
+
+	}
+
+
+	handleFormSubmit() {
+
+	}
+
+	render() {
+		return (
+			<div className="App">
+				<header className="App-header">
+					<form>
+						<label for="string">String:</label>
+						<input id="string" type="text"></input>
+						<input type="submit">Submit</input>
+					</form>
+				</header>
+			</div>
+		)
+	}
 }
 
 export default App;
