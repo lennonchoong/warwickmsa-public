@@ -3,9 +3,9 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
-app.use('/', express.static('src'));
+// app.use('/', express.static('src'));
 
-app.get("/dingo", function (req, res) {
+app.get("/", function (req, res) {
     var responseText = "Hello World!<br>";
     responseText += "<small>Requested at: " + req.requestTime + "</small>";
     res.send(responseText);
