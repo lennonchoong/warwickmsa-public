@@ -40,6 +40,7 @@ body {
 	flex-direction: column;
 	scroll-snap-align: start;
 	height: fit-content;
+	min-height: 100vh;
 }
 
 .events {
@@ -49,6 +50,7 @@ body {
 	flex-direction: column;
 	scroll-snap-align: start;
 	height: fit-content;
+	min-height: 100vh;
 }
 
 .sponsor {
@@ -56,6 +58,7 @@ body {
 	width: 100%;
 	display: flex;
 	scroll-snap-align: start;
+	min-height: 100vh;
 }
 
 .social {
