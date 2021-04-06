@@ -16,9 +16,6 @@ app.post('/api/member', (req, res) => {
     const desc = req.body.desc;
     const pos = req.body.position;
     const pictureHref = `./statics/members/${name.replace(" ", "_")}.jpeg`;
-    if (!fs.existsSync("./client/build/statics/members")) {
-        fs.mkdirSync("./client/build/statics/members", {recursive : true});
-    }
     fs.writeFile("./client/build" + pictureHref.substr(1), body, "base64", (err) => err === null ? "" : console.log(err));
     const qstr = `INSERT INTO members VALUES (NULL, ${sql.escape(name)}, ${sql.escape(pos)}, ${sql.escape(desc)}, ${sql.escape(pictureHref)});`
     sql.query(qstr, (err, result) => {
