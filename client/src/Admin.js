@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Dashboard from './dashboard/Dashboard';
 import Login from "./dashboard/Login";
-import './App.css';
 
 class Admin extends Component {
     constructor() {

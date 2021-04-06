@@ -1,9 +1,15 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, useState, useEffect} from 'react';
 import ArrowSVG from "../statics/arrow.svg";
 import Card from "./Card"
 import NavBar from "./NavBar";
 
 const Events = forwardRef((props, ref) => {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        setData(props.data);
+        console.log(data);
+    })
+
     return (
         <div ref={ref} className="events">
             <div className="comm-wrapper">
@@ -15,14 +21,11 @@ const Events = forwardRef((props, ref) => {
                 <div className="two-col">
                     <div className="scroll-col col">
                         <div className="card-col">
-                            <Card dark={false}/>
-                            <Card dark={false}/>
-                            <Card dark={false}/>
-                            <Card dark={false}/>
-                            <Card dark={false}/>
-                            <Card dark={false}/>
-                            <Card dark={false}/>
-                            <Card dark={false}/>
+                            {data.map((e) => {
+                                return (
+                                    <Card dark={false} event={true} data={e}/>
+                                )
+                            })}
                         </div>
                     </div>
                     <div className="sticky-col col">

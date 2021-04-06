@@ -35,6 +35,7 @@ let theme = createMuiTheme({
         },
     },
     typography: {
+        fontSize: 32,
         h5: {
             fontWeight: 500,
             fontSize: 26,

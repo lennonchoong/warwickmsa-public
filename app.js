@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
 app.use('/', express.static(path.join(__dirname, 'client/build')));
 app.get('/admin', (req, res) => res.sendFile(path.resolve('client', 'build', 'index.html')));
 
@@ -16,7 +16,7 @@ app.post('/api/member', (req, res) => {
     const desc = req.body.desc;
     const pos = req.body.position;
     const pictureHref = `./statics/members/${name.replace(" ", "_")}.jpeg`;
-    fs.writeFile(pictureHref, body, "base64", (err) => err === null ? "" : console.log(err));
+    fs.writeFile("./client/build" + pictureHref.substr(1), body, "base64", (err) => err === null ? "" : console.log(err));
     const qstr = `INSERT INTO members VALUES (NULL, ${sql.escape(name)}, ${sql.escape(pos)}, ${sql.escape(desc)}, ${sql.escape(pictureHref)});`
     sql.query(qstr, (err, result) => {
         if (err) {
@@ -33,7 +33,7 @@ app.post('/api/event', (req, res) => {
     const body = req.body.file;
     const desc = req.body.desc;
     const pictureHref = `./statics/events/${title.replace(" ", "_")}.jpeg`;
-    fs.writeFile(pictureHref, body, "base64", (err) => err === null ? "" : console.log(err));
+    fs.writeFile("./client/build" + pictureHref.substr(1), body, "base64", (err) => err === null ? "" : console.log(err));
     const dateStr = new Date().toJSON().slice(0, 10);
     const qstr = `INSERT INTO events VALUES (NULL, ${sql.escape(title)}, ${sql.escape(desc)}, ${sql.escape(pictureHref)}, '${dateStr}');`
     sql.query(qstr, (err, result) => {
@@ -51,7 +51,7 @@ app.post('/api/sponsor', (req, res) => {
     const body = req.body.file;
     const desc = req.body.desc;
     const pictureHref = `./statics/sponsors/${name.replace(" ", "_")}.jpeg`;
-    fs.writeFile(pictureHref, body, "base64", (err) => err === null ? "" : console.log(err));
+    fs.writeFile("./client/build" + pictureHref.substr(1), body, "base64", (err) => err === null ? "" : console.log(err));
     const qstr = `INSERT INTO sponsors VALUES (NULL, ${sql.escape(name)}, ${sql.escape(desc)}, ${sql.escape(pictureHref)});`
     sql.query(qstr, (err, result) => {
         if (err) {
@@ -123,7 +123,7 @@ app.delete('/api/member', (req, res) => {
         if (error) {
             return res.status(400).send(new Error("DB Error"));
         }
-        fs.unlink(req.body.imgref, (err) => err === null ? "" : console.log(err));
+        fs.unlink("./client/build" + req.body.imgref.substr(1), (err) => err === null ? "" : console.log(err));
         res.status(200).send("OK");
     })
 })
@@ -133,7 +133,7 @@ app.delete('/api/event', (req, res) => {
         if (error) {
             return res.status(400).send(new Error("DB Error"));
         }
-        fs.unlink(req.body.imgref, (err) => err === null ? "" : console.log(err));
+        fs.unlink("./client/build" + req.body.imgref.substr(1), (err) => err === null ? "" : console.log(err));
         res.status(200).send("OK");
     })
 })
@@ -143,7 +143,7 @@ app.delete('/api/sponsor', (req, res) => {
         if (error) {
             return res.status(400).send(new Error("DB Error"));
         }
-        fs.unlink(req.body.imgref, (err) => err === null ? "" : console.log(err));
+        fs.unlink("./client/build" + req.body.imgref.substr(1), (err) => err === null ? "" : console.log(err));
         res.status(200).send("OK");
     })
 })

@@ -66,6 +66,7 @@ body {
 	align-items: center;
 	scroll-snap-align: start;
 	min-height: 100vh;
+	flex-direction: column;
 }
 
 .nav {
@@ -264,6 +265,7 @@ body {
 	height: fit-content;
 	scroll-snap-type: y mandatory;
 	overscroll-behavior: none;
+	width: 85%;
 }
 
 .card {
@@ -342,10 +344,22 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-top: 25rem;
 }
 
 .icon-wrappers {
 	justify-self: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	z-index: 99999;
+	width: 100%;
+	margin-top: 14rem;
+}
+
+.icons {
+	margin: 0 10rem 0 10rem;
 }
 
 /* Transitions and transforms */
@@ -368,3 +382,28 @@ body {
 	transform: translate(0, 0) !important;
 }
 
+.icons {
+	cursor: pointer;
+}
+
+.icons img {
+	height: 15rem;
+	width: auto;
+	transition: height .5s ease;
+}
+
+.icons img:hover {
+	height: 17rem;
+}
+
+.copyright {
+	margin-top: auto;
+	font-size: 2rem;
+	padding-bottom: 2rem;
+	color: #A7A9BE;
+}
+
+.copyright a {
+	text-decoration: none;
+	color: inherit;
+}

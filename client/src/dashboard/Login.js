@@ -1,9 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import Grid from "@material-ui/core/Grid";
-import { Typography, withStyles } from '@material-ui/core';
+import { Typography, withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+
+let theme = createMuiTheme({
+    typography: {
+        fontSize: 28,
+    },
+});
 
 const styles = {
     root: {
@@ -76,52 +82,55 @@ function Login(props) {
     }
 
     return (
-        <div className={classes.root}>
-            <Paper 
-                className={classes.paper}
-                elevation={3}
-            >
-                <Grid
-                    container
-                    direction="column"
-                    alignItems="center"
-                    spacing={5}
+        <ThemeProvider theme={theme}>
+            <div className={classes.root}>
+                <Paper 
+                    className={classes.paper}
+                    elevation={3}
                 >
-                    <Grid container item spacing={1} justify="center">
-                        <Typography className={classes.fontColor} variant="h4">Login To Dashboard</Typography>
+                    <Grid
+                        container
+                        direction="column"
+                        alignItems="center"
+                        spacing={5}
+                    >
+                        <Grid container item spacing={1} justify="center">
+                            <Typography className={classes.fontColor} variant="h4">Login To Dashboard</Typography>
+                        </Grid>
+                        <Grid container item spacing={1} justify="center">
+                            <TextField
+                                required
+                                id="outlined-username-input"
+                                label="Username"
+                                type="text"
+                                variant="outlined"
+                                className={classes.input}
+                                InputLabelProps={{className: classes.multilineColor}}
+                                onChange={(e) => setUsername(e.target.value)}
+                                InputProps={{classes: {notchedOutline: classes.multilineColor}, className: classes.color}}
+                            />
+                        </Grid>
+                        <Grid container item spacing={1} justify="center">
+                            <TextField
+                                required
+                                id="outlined-password-input"
+                                label="Password"
+                                type="password"
+                                autoComplete="current-password"
+                                variant="outlined"
+                                className={classes.input}
+                                onChange={(e) => setPassword(e.target.value)}
+                                InputProps={{classes: {notchedOutline: classes.multilineColor}}}
+                            />
+                        </Grid>
+                        <Grid container item spacing={1} justify="center">
+                            <Button variant="contained" onClick={() => loginUser()}>Login</Button>
+                        </Grid>
                     </Grid>
-                    <Grid container item spacing={1} justify="center">
-                        <TextField
-                            required
-                            id="outlined-username-input"
-                            label="Username"
-                            type="text"
-                            variant="outlined"
-                            className={classes.input}
-                            InputLabelProps={{className: classes.multilineColor}}
-                            onChange={(e) => setUsername(e.target.value)}
-                            InputProps={{classes: {notchedOutline: classes.multilineColor}, className: classes.color}}
-                        />
-                    </Grid>
-                    <Grid container item spacing={1} justify="center">
-                        <TextField
-                            required
-                            id="outlined-password-input"
-                            label="Password"
-                            type="password"
-                            autoComplete="current-password"
-                            variant="outlined"
-                            className={classes.input}
-                            onChange={(e) => setPassword(e.target.value)}
-                            InputProps={{classes: {notchedOutline: classes.multilineColor}}}
-                        />
-                    </Grid>
-                    <Grid container item spacing={1} justify="center">
-                        <Button variant="contained" onClick={() => loginUser()}>Login</Button>
-                    </Grid>
-                </Grid>
-            </Paper>
-        </div>
+                </Paper>
+            </div>
+        </ThemeProvider>
+
     )
 }
 

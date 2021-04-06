@@ -22,10 +22,100 @@ class Main extends Component {
 			4: this.sponsorRef,
 			5: this.socialRef,
 		}
+		this.state = {
+			members: [],
+			events: [],
+			sponsors: [],
+			socials: [],
+		}
+	}
+
+	fetchMembers() {
+		fetch("/api/member", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then((res) => {
+            if (res.status === 200) {
+                console.log("Success: ", res);
+                return res.json();
+            } else {
+                console.error("Error:", res);
+            }
+        }).then((data) => {
+            this.setState({members: JSON.parse(data)}, () => console.log(this.state));
+        }).catch((error) => {
+            console.error("Error:", error);
+        });
+	}
+
+	fetchEvents() {
+		fetch("/api/event", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then((res) => {
+            if (res.status === 200) {
+                console.log("Success: ", res);
+                return res.json();
+            } else {
+                console.error("Error:", res);
+            }
+        }).then((data) => {
+            this.setState({events: JSON.parse(data)});
+        }).catch((error) => {
+            console.error("Error:", error);
+        });
+	}
+
+	fetchSponsors() {
+		fetch("/api/sponsor", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then((res) => {
+            if (res.status === 200) {
+                console.log("Success: ", res);
+                return res.json();
+            } else {
+                console.error("Error:", res);
+            }
+        }).then((data) => {
+            this.setState({sponsors: JSON.parse(data)});
+        }).catch((error) => {
+            console.error("Error:", error);
+        });
+	}
+
+	fetchSocials() {
+		fetch("/api/social", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then((res) => {
+            if (res.status === 200) {
+                console.log("Success: ", res);
+                return res.json();
+            } else {
+                console.error("Error:", res);
+            }
+        }).then((data) => {
+            this.setState({socials: JSON.parse(data)});
+        }).catch((error) => {
+            console.error("Error:", error);
+        });
 	}
 
 	componentDidMount() {
 		this.wrapperRef.current.addEventListener("scroll", () => this.animateInView());
+		this.fetchMembers();
+		this.fetchEvents();
+		this.fetchSponsors();
+		this.fetchSocials();
 	}
 
     animateInView() {
@@ -76,20 +166,26 @@ class Main extends Component {
                     nextPageRef={this.eventsRef}
                     scrollNextPage={this.scrollNextPage}
 					navBarRef={this.navBarRef}
+					data={this.state.members}
                 />
                 <Events
                     ref={this.eventsRef}
                     nextPageRef={this.sponsorRef}
                     scrollNextPage={this.scrollNextPage}
 					navBarRef={this.navBarRef}
+					data={this.state.events}
                 />
                 <Sponsor
                     ref={this.sponsorRef}
                     nextPageRef={this.socialRef}
                     scrollNextPage={this.scrollNextPage}
 					navBarRef={this.navBarRef}
+					data={this.state.sponsors}
                 />
-                <Social ref={this.socialRef} />
+                <Social 
+					ref={this.socialRef} 
+					data={this.state.socials}
+				/>
             </div>
         );
     }

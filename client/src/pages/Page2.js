@@ -1,9 +1,14 @@
-import React, {forwardRef, useEffect} from 'react';
+import React, {forwardRef, useEffect, useState} from 'react';
 import ArrowSVG from "../statics/arrowdark.svg";
 import Card from "./Card"
 import NavBar from "./NavBar";
 
 const Page2 = forwardRef((props, ref) => {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        setData(props.data);
+    })
+
     return (
         <div ref={ref} className="page2">
             <div className="comm-wrapper">
@@ -21,14 +26,11 @@ const Page2 = forwardRef((props, ref) => {
                     </div>
                     <div className="scroll-col col">
                         <div className="card-col">
-                            <Card dark={true}/>
-                            <Card dark={true}/>
-                            <Card dark={true}/>
-                            <Card dark={true}/>
-                            <Card dark={true}/>
-                            <Card dark={true}/>
-                            <Card dark={true}/>
-                            <Card dark={true}/>
+                            {data.map((e) => {
+                                return (
+                                    <Card dark={true} member={true} data={e}/>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>
