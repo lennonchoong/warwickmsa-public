@@ -181,6 +181,18 @@ body {
 	margin-top: 3rem;
 	display: flex;
 	width: 90%;
+	justify-content: center;
+}
+
+.shadow {
+	-webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+	filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+	/* Similar syntax to box-shadow */
+}
+
+.svg-wrapper img {
+	width: 70%;
+    height: fit-content;
 }
 
 .title-wrapper {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, forwardRef } from 'react';
-import PageSVG from "../statics/front.svg";
+import PageSVG from "../statics/logo.svg";
 import ArrowSVG from "../statics/arrow.svg";
 import NavBar from "./NavBar";
 
@@ -27,7 +27,7 @@ const Page1 = forwardRef((props, ref) => {
                 </div>
                 <div className="right-col col">
                     <div className="init-fade svg-wrapper">
-                        <img src={PageSVG} alt="logo"/>
+                        <img src={PageSVG} alt="logo" className="shadow"/>
                     </div>
                 </div>
             </div>
