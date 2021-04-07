@@ -64,7 +64,7 @@ class Main extends Component {
                 console.error("Error:", res);
             }
         }).then((data) => {
-            this.setState({events: JSON.parse(data)});
+            this.setState({events: JSON.parse(data).sort((a,b) => (a['post_date'] > b['post_date']) ? -1 : ((b['post_date'] > a['post_date']) ? 1 : 0))});
         }).catch((error) => {
             console.error("Error:", error);
         });

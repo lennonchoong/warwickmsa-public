@@ -61,7 +61,7 @@ function Login(props) {
 
     function loginUser() {
         if (username === "" || password === "") return;
-        fetch('http://localhost:5000' + '/api/login', {
+        fetch('/api/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

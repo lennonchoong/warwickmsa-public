@@ -78,7 +78,7 @@ class Content extends Component {
     }
 
     handleTextField = (e, key) => {
-        this.setState({[key] : e.target.value})
+        this.setState({[key] : e.target.value});
     }
 
     handleFileInput = (e) => {
@@ -111,11 +111,19 @@ class Content extends Component {
         }
     }
 
+    parseNewline = (str) => {
+        return str.replace(/\r?\n|\r/g, '<br>');
+    }
+
     async prepareData() {
         let obj = {}
         for (const key in this.state) {
             if (this.state[`${key}`] !== "" && `${key}` !== "file" && `${key}` !== "success") {
-                obj[`${key}`] = this.state[`${key}`];
+                if (`${key}` === "desc") {
+                    obj[`${key}`] = this.parseNewline(this.state[`${key}`]);
+                } else {
+                    obj[`${key}`] = this.state[`${key}`];
+                }
             }
         }
 

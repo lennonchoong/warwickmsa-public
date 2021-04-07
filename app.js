@@ -117,7 +117,6 @@ app.delete('/api/member', (req, res) => {
         if (error) {
             return res.status(400).send(new Error("DB Error"));
         }
-        fs.unlink("./client/build" + req.body.imgref.substr(1), (err) => err === null ? "" : console.log(err));
         res.status(200).send("OK");
     })
 })
@@ -127,7 +126,6 @@ app.delete('/api/event', (req, res) => {
         if (error) {
             return res.status(400).send(new Error("DB Error"));
         }
-        fs.unlink("./client/build" + req.body.imgref.substr(1), (err) => err === null ? "" : console.log(err));
         res.status(200).send("OK");
     })
 })
@@ -137,7 +135,6 @@ app.delete('/api/sponsor', (req, res) => {
         if (error) {
             return res.status(400).send(new Error("DB Error"));
         }
-        fs.unlink("./client/build" + req.body.imgref.substr(1), (err) => err === null ? "" : console.log(err));
         res.status(200).send("OK");
     })
 })

@@ -7,7 +7,6 @@ const Events = forwardRef((props, ref) => {
     const [data, setData] = useState([]);
     useEffect(() => {
         setData(props.data);
-        console.log(data);
     })
 
     return (
