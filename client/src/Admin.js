@@ -20,6 +20,10 @@ class Admin extends Component {
         this.setState({auth: false});
     }
 
+    componentDidMount() {
+        document.body.style.overflowY = "scroll";
+    }
+
     render() {
         let block;
         if (this.state.auth) {

@@ -15,12 +15,7 @@ app.post('/api/member', (req, res) => {
     const body = req.body.file;
     const desc = req.body.desc;
     const pos = req.body.position;
-    const pictureHref = `./statics/members/${name.replace(" ", "_")}.jpeg`;
-    if (!fs.existsSync("./client/build/statics/members")) {
-        fs.mkdirSync("./client/build/statics/members", {recursive : true});
-    }
-    fs.writeFile("./client/build" + pictureHref.substr(1), body, "base64", (err) => err === null ? "" : console.log(err));
-    const qstr = `INSERT INTO members VALUES (NULL, ${sql.escape(name)}, ${sql.escape(pos)}, ${sql.escape(desc)}, ${sql.escape(pictureHref)});`
+    const qstr = `INSERT INTO members VALUES (NULL, ${sql.escape(name)}, ${sql.escape(pos)}, ${sql.escape(desc)}, '${body}');`
     sql.query(qstr, (err, result) => {
         if (err) {
             res.status(500).send(err);
@@ -35,13 +30,8 @@ app.post('/api/event', (req, res) => {
     const title = req.body.title;
     const body = req.body.file;
     const desc = req.body.desc;
-    const pictureHref = `./statics/events/${title.replace(" ", "_")}.jpeg`;
-    if (!fs.existsSync("./client/build/statics/events")) {
-        fs.mkdirSync("./client/build/statics/events", {recursive : true});
-    }
-    fs.writeFile("./client/build" + pictureHref.substr(1), body, "base64", (err) => err === null ? "" : console.log(err));
     const dateStr = new Date().toJSON().slice(0, 10);
-    const qstr = `INSERT INTO events VALUES (NULL, ${sql.escape(title)}, ${sql.escape(desc)}, ${sql.escape(pictureHref)}, '${dateStr}');`
+    const qstr = `INSERT INTO events VALUES (NULL, ${sql.escape(title)}, ${sql.escape(desc)}, '${body}', '${dateStr}');`
     sql.query(qstr, (err, result) => {
         if (err) {
             res.status(500).send(err);
@@ -56,12 +46,7 @@ app.post('/api/sponsor', (req, res) => {
     const name = req.body.name;
     const body = req.body.file;
     const desc = req.body.desc;
-    const pictureHref = `./statics/sponsors/${name.replace(" ", "_")}.jpeg`;
-    if (!fs.existsSync("./client/build/statics/sponsors")) {
-        fs.mkdirSync("./client/build/statics/sponsors", {recursive : true});
-    }
-    fs.writeFile("./client/build" + pictureHref.substr(1), body, "base64", (err) => err === null ? "" : console.log(err));
-    const qstr = `INSERT INTO sponsors VALUES (NULL, ${sql.escape(name)}, ${sql.escape(desc)}, ${sql.escape(pictureHref)});`
+    const qstr = `INSERT INTO sponsors VALUES (NULL, ${sql.escape(name)}, ${sql.escape(desc)}, '${body}');`
     sql.query(qstr, (err, result) => {
         if (err) {
             res.status(500).send(err);

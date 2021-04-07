@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 // import Picture from "../../../statics/members";
 
 const Card = (props) => {
@@ -24,13 +24,13 @@ const Card = (props) => {
         <div className="card">
             <div className="card-wrapper">
                 <div className="fade card-img">
-                    <img src={".." + props.data.picture.substr(1)}></img>
+                    <img src={props.data.picture}></img>
                 </div>
                 <div className="fade card-desc">
                     <div className={`card-name ${props.dark ? 'card-text-dark' : 'card-text-light'}`}>{props.event ? props.data.title : props.data.name}</div>
                     {props.member ? <div className={`card-title ${props.dark ? 'card-text-dark' : 'card-text-light'}`}>{props.data.position}</div> : null}
                     {props.event ? <div className={`card-title ${props.dark ? 'card-text-dark' : 'card-text-light'}`}>{parseDate(props.data['post_date'])}</div> : null}
-                    <div className={`card-desc ${props.dark ? 'card-text-dark-2' : 'card-text-light-2'}`}>{props.data.body}</div>
+                    <div className={`card-desc ${props.dark ? 'card-text-dark-2' : 'card-text-light-2'}`} dangerouslySetInnerHTML={{__html: props.data.body}}></div>
                 </div>
             </div>
         </div>

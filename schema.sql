@@ -11,7 +11,7 @@ CREATE TABLE members (
     name VARCHAR(40) NOT NULL,
     position VARCHAR(40) NOT NULL,
     body TEXT NOT NULL,
-    picture VARCHAR(100) NOT NULL
+    picture LONGTEXT NOT NULL
 );
 
 DROP TABLE IF EXISTS events;
@@ -19,7 +19,7 @@ CREATE TABLE events (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(40) NOT NULL,
     body TEXT NOT NULL,
-    picture VARCHAR(100) NOT NULL,
+    picture LONGTEXT NOT NULL,
     post_date VARCHAR(30) NOT NULL
 );
 
@@ -28,7 +28,7 @@ CREATE TABLE sponsors (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(40) NOT NULL,
     body TEXT NOT NULL,
-    picture VARCHAR(100) NOT NULL
+    picture LONGTEXT NOT NULL
 );
 
 DROP TABLE IF EXISTS socials;

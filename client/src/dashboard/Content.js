@@ -124,7 +124,7 @@ class Content extends Component {
                 const reader = new FileReader();
                 reader.readAsDataURL(this.state["file"])
                 reader.onload = () => {
-                    obj["file"] = reader.result.split(',')[1];
+                    obj["file"] = reader.result;
                     resolve(obj);
                 }
                 reader.onerror = () => {
